@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aquino Speech Interactive Page</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Tahoma, sans-serif;
+background:linear-gradient(to right,#0038A8,#CE1126);
+color:white;
+}
+
+header{
+text-align:center;
+padding:40px;
+background:rgba(0,0,0,0.3);
+}
+
+h1{
+margin:0;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+.tabs{
+display:flex;
+justify-content:center;
+margin-bottom:20px;
+}
+
+.tab{
+padding:12px 20px;
+background:white;
+color:black;
+margin:5px;
+border-radius:5px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.tab:hover{
+background:#ffd700;
+}
+
+.content{
+display:none;
+background:white;
+color:black;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.4);
+}
+
+.active{
+display:block;
+}
+
+.card{
+margin-top:15px;
+padding:15px;
+background:#f2f2f2;
+border-radius:8px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{
+background:#e3e3e3;
+}
+
+.hidden{
+display:none;
+}
+
+.stats{
+display:flex;
+justify-content:space-around;
+margin-top:20px;
+}
+
+.stat{
+text-align:center;
+}
+
+.number{
+font-size:30px;
+font-weight:bold;
+color:#0038A8;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Corazon Aquino's Historic Address</h1>
+<p>Speech Before the U.S. Congress • September 18, 1986</p>
+</header>
+
+<div class="container">
+
+<div class="tabs">
+<div class="tab" onclick="showTab('story')">Story</div>
+<div class="tab" onclick="showTab('themes')">Themes</div>
+<div class="tab" onclick="showTab('impact')">Impact</div>
+</div>
+
+<div id="story" class="content active">
+<h2>The Historic Moment</h2>
+
+<p>
+In 1986, President Corazon Aquino addressed the United States Congress to present the story of the Filipino people's peaceful struggle for democracy. The speech symbolized a renewed partnership between the Philippines and the United States after the restoration of democratic rule.
+</p>
+
+<div class="card" onclick="toggle('detail1')">
+Click to reveal background of the speech
+<p id="detail1" class="hidden">
+The address came months after the People Power Revolution, when millions of Filipinos peacefully protested and restored democratic leadership.
+</p>
+</div>
+
+<div class="card" onclick="toggle('detail2')">
+Click to reveal why the speech mattered
+<p id="detail2" class="hidden">
+The speech helped secure international support for rebuilding the Philippine economy and democratic institutions.
+</p>
+</div>
+
+</div>
+
+<div id="themes" class="content">
+<h2>Main Themes of the Speech</h2>
+
+<div class="card" onclick="toggle('theme1')">
+Democracy
+<p id="theme1" class="hidden">
+Aquino emphasized that democracy was restored through peaceful civic action rather than violence.
+</p>
+</div>
+
+<div class="card" onclick="toggle('theme2')">
+Unity
+<p id="theme2" class="hidden">
+The revolution united Filipinos from different backgrounds who believed in freedom and justice.
+</p>
+</div>
+
+<div class="card" onclick="toggle('theme3')">
+International Cooperation
+<p id="theme3" class="hidden">
+Aquino asked for support from the United States and the global community to help rebuild the nation.
+</p>
+</div>
+
+</div>
+
+<div id="impact" class="content">
+
+<h2>Impact of the Speech</h2>
+
+<p>The address strengthened diplomatic ties and brought global attention to the peaceful democratic movement in the Philippines.</p>
+
+<div class="stats">
+
+<div class="stat">
+<div class="number" id="count1">0</div>
+<p>Standing Ovations</p>
+</div>
+
+<div class="stat">
+<div class="number" id="count2">0</div>
+<p>Years of Democracy Since</p>
+</div>
+
+<div class="stat">
+<div class="number" id="count3">0</div>
+<p>Countries Inspired by Peaceful Movements</p>
+</div>
+
+</div>
+
+<button onclick="startCount()">Show Impact</button>
+
+</div>
+
+</div>
+
+<script>
+
+function showTab(id){
+
+let sections=document.querySelectorAll(".content");
+
+sections.forEach(section=>{
+section.classList.remove("active");
+});
+
+document.getElementById(id).classList.add("active");
+
+}
+
+function toggle(id){
+
+let element=document.getElementById(id);
+
+if(element.classList.contains("hidden")){
+element.classList.remove("hidden");
+}else{
+element.classList.add("hidden");
+}
+
+}
+
+function startCount(){
+
+animate("count1",20);
+animate("count2",39);
+animate("count3",10);
+
+}
+
+function animate(id,target){
+
+let element=document.getElementById(id);
+let count=0;
+
+let interval=setInterval(function(){
+
+count++;
+element.innerText=count;
+
+if(count>=target){
+clearInterval(interval);
+}
+
+},40);
+
+}
+
+</script>
+
+</body>
+</html>
